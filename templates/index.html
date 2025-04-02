@@ -1,35 +1,46 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Best store!</title>
-    <script type="text/javascript" src="/static/update.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Resume</title>
     <link href="static/store.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="/static/update.js"></script>
 </head>
 
 <body>
-    <h1>Furniture store:</h1>
-    <h3>Add new product:</h3>
-    <form>
-        <div>
-            <input type="text" name="prod_name" id="prod_name">
-            <label for="prod_name">Product name</label>
-        </div>
-        <div>
-            <input type="number" name="price" id="price">
-            <label for="price">Price (rub.)</label>
-        </div>
-        <button onClick="addProduct()">Add</button>
-    </form>
-    <ul>
-        {% for product in products_list %}
-        <li>
-            <div>
-                <div>{{ product['prod_name'] }}</div>
-                <div>{{ product['price'] }} rub.</div>
-                <input value="{{product['id']}}" onChange="updateProd(this)" name="in_stock" type="checkbox" {% if product.in_stock %} checked {% endif %}>
-                <label for="in_stock">In stock</label>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
+    <header>
+        <h1>My Professional Experience</h1>
+    </header>
+
+    <main class="container">
+        <section class="experience-form">
+            <h2>Add Work Experience</h2>
+            <form>
+                <div class="form-group">
+                    <label for="company_name">Company name</label>
+                    <input type="text" name="company_name" id="company_name" placeholder="Enter company name">
+                </div>
+                <div class="form-group">
+                    <label for="term">Working term (months)</label>
+                    <input type="number" name="term" id="term" placeholder="Duration in months">
+                </div>
+                <button type="button" class="submit-btn" onClick="addCompany()">Add Experience</button>
+            </form>
+        </section>
+
+        <section class="experience-list">
+            <h2>Work History</h2>
+            <ul>
+                {% for company in companies_list %}
+                <li class="company-item">
+                    <div class="company-name">{{ company['company_name'] }}</div>
+                    <div class="company-term">{{ company['term'] }} months</div>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
 </body>
 </html>
